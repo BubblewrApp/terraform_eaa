@@ -1,0 +1,5 @@
+[default]
+client_secret = xxxxxxxxxxxxxxxxxxxxxxxxxxx
+host = xxxx-xxxxxxxxxxxxxxxxxxxxxxxxxxx.luna-dev.akamaiapis.net
+access_token = xxxx-xxxxxxxxxxxxxxxxxxxxxxxxxxx
+client_token = xxxx-xxxxxxxxxxxxxxxxxxxxxxxxxxx
