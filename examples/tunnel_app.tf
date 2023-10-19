@@ -1,66 +1,62 @@
 terraform {
     required_providers {
-    eaa = {
-      source  = "terraform.eaaprovider.dev/eaaprovider/eaa"
-      version = "1.0.0"
+        eaa = {
+            source  = "terraform.eaaprovider.dev/eaaprovider/eaa"
+            version = "1.0.0"
+        }
     }
-  }
 }
 
 provider "eaa" {
-  contractid       = "1-3CV382"
-  edgerc           = ".edgerc"
+    contractid       = "1-3XXXXX"
+    edgerc           = ".edgerc"
 }
 
-resource "eaa_application" "tftunnelapp" {
-  provider = eaa
+resource "eaa_application" "sap-prod-dc1-app" {
+    provider    = eaa
 
-  name = "tfapptunnel1"
-  description = "app created using terraform"
-  host = "github.com"
+    app_profile     = "tcp"
+    app_type        = "tunnel"
+    client_app_mode = "tunnel"
 
-  app_profile = "tcp"
-  app_type = "tunnel"
-  client_app_mode = "tunnel"
+    domain          = "wapp"
+    popregion       = "us-west-1"
 
+    name        = "SAP Production"
+    description = "SAP Production TCP tunnel app created using terraform"
+    host        = "sap-prod-dc1"
 
-  domain = "wapp"
-  auth_enabled = "true"
+    agents = ["EAA_DC1_US1_TCP_01"]
 
-  popregion = "us-west-1"
-
-  agents = ["terraform-test-connector"]
-  app_category ="test"
-
-  tunnel_internal_hosts {
-      proto_type= 1
-      port_range=     "22"
-      host=     "192.168.2.1"
+    tunnel_internal_hosts {
+        proto_type = 1
+        port_range = "3200-6000"
+        host       = "192.168.2.1"
     }
 
-     tunnel_internal_hosts {
-      proto_type= 1
-      port_range=     "22"
-      host=     "192.168.2.2"
+    tunnel_internal_hosts {
+        proto_type = 1
+        port_range = "40199"
+        host       = "192.168.2.2"
     }
 
-  advanced_settings {
-      is_ssl_verification_enabled = "false"
-      ignore_cname_resolution = "true"
-      g2o_enabled = "true"
-      ip_access_allow = "false"
-      x_wapp_read_timeout = "300"
-	}
+    advanced_settings {
+        is_ssl_verification_enabled = "false"
+        ignore_cname_resolution = "true"
+        g2o_enabled = "true"
+        ip_access_allow = "false"
+        x_wapp_read_timeout = "300"
+	  }
 
+    auth_enabled = "true"
 
-  app_authentication {
-    app_idp = "kiran-sqa2-okta"
-    app_directories {
-      name = "Cloud Directory"
-      app_groups {
-        name = "Admins"
-      }
+    app_authentication {
+        app_idp = "employees-idp"
+        app_directories {
+            name = "Cloud Directory"
+            app_groups {
+                name = "SAP-Admins"
+            }
+        }
     }
-  }
 }
-
