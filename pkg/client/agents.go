@@ -23,7 +23,6 @@ type Connector struct {
 	Description           *string `json:"description"`
 	DHCP                  string  `json:"dhcp"`
 	DiskSize              *string `json:"disk_size"`
-	DNSServer             *string `json:"dns_server"`
 	DownAppsCount         int     `json:"down_apps_count"`
 	DownDirCount          int     `json:"down_dir_count"`
 	DownloadURL           *string `json:"download_url"`
