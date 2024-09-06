@@ -78,22 +78,24 @@ terraform apply
 
 - Create and deploy an application 
 - Update the application
-- Only Akamai domain is supported 
+- Apps with Akamai domain and custom domain 
+- Self signed certificate for custom domain
+- Uploaded certicate for custom domain
 - Assigning pops to the application
 - Assigning App categories to the application
 - Assigning connectors to the application
 - Assigning IDP to the application
 - Assigning directories to the application 
 - Assigning groups to the application
+- Enabling Access service
+- Creating access control rule(s) to block or deny access to an application, based on User/Group criteria
 - updating G2O
 - subset of advanced_settings
+- updating connectors, IDPs, directories and groups assigned to application
 - data sources for app_categories, pops, agents, idps, directories and groups
 - Supports only Mac darwin_amd64
 
 ### The EAA custom plugin currently does not support
-- custom domain
-- certificates
-- modifying agents, authentication
 - all of advanced_settings
 
 ## Troubleshooting and Support
